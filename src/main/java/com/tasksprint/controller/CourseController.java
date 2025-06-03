@@ -7,12 +7,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
+// @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER)")
 @RestController
 @RequestMapping("/courses")
 @RequiredArgsConstructor
