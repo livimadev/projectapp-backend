@@ -5,6 +5,8 @@ import com.tasksprint.repo.ICourseRepo;
 import com.tasksprint.repo.IGenericRepo;
 import com.tasksprint.service.ICourseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,5 +19,10 @@ public class CourseService extends GenericService<Course, Integer> implements IC
     @Override
     protected IGenericRepo<Course, Integer> getRepo() {
         return repo;
+    }
+
+    @Override
+    public Page<Course> listPage(Pageable pageable) {
+        return repo.findAll(pageable);
     }
 }

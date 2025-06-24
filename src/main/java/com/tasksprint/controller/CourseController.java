@@ -6,6 +6,8 @@ import com.tasksprint.service.ICourseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -60,5 +62,11 @@ public class CourseController {
 
     private Course convertToEntity(CourseDTO dto){
         return modelMapper.map(dto, Course.class);
+    }
+
+    @GetMapping("/pageable")
+    public ResponseEntity<Page<Course>> listPage(Pageable pageable){
+        Page<Course> page = service.listPage(pageable);
+        return ResponseEntity.ok(page);
     }
 }
